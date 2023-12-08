@@ -1,0 +1,5 @@
+(defun reduce-tree (fn tree &optional (initial-value nil))
+  (cond ((null tree) initial-value)
+        ((atom tree) (funcall fn initial-value tree))
+        (t (reduce (lambda (acc x) (reduce-tree fn x acc))
+                   tree :initial-value initial-value))))
